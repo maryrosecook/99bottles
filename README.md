@@ -10,8 +10,6 @@ As a drinker
 So I can get in a good flow
 I want to be able to sing several verses at once
 
-## Doing
-
 As a drinker
 So I can enjoy my drink more
 I want to sing a song verse about how many bottles of beer I have left
