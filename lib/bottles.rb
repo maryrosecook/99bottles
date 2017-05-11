@@ -3,11 +3,7 @@ require 'active_support/inflector'
 class Bottles
 
   def verse(bottle_count)
-    post_drink_bottle_count = bottle_count - 1
-
-    <<-VERSE
-#{first_line(bottle_count)}Take #{bottle_to_drink_description(bottle_count)} down and pass it around, #{bottle_count_s(post_drink_bottle_count)} of beer on the wall.
-VERSE
+    "#{first_line(bottle_count)}#{second_line(bottle_count)}"
   end
 
   private
@@ -15,6 +11,13 @@ VERSE
   def first_line(bottle_count)
     <<-LINE
 #{bottle_count_s(bottle_count)} of beer on the wall, #{bottle_count_s(bottle_count)} of beer.
+LINE
+  end
+
+  def second_line(bottle_count)
+    post_drink_bottle_count = bottle_count - 1
+    <<-LINE
+Take #{bottle_to_drink_description(bottle_count)} down and pass it around, #{bottle_count_s(post_drink_bottle_count)} of beer on the wall.
 LINE
   end
 
