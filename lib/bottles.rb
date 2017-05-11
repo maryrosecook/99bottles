@@ -1,7 +1,6 @@
 require 'active_support/inflector'
 
 class Bottles
-
   def verse(bottle_count)
     "#{first_line(bottle_count)}#{second_line(bottle_count)}"
   end
