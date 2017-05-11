@@ -1,38 +1,32 @@
-class Verse
-  # TODO: make private
-  attr_accessor :bottle_count
+require_relative "./bottle_count"
+require_relative "./drink"
+require_relative "./go_to_the_store"
 
+class Verse
   def initialize(bottle_count)
     self.bottle_count = bottle_count
-  end
-
-  # TODO: make private later
-  def first_line
-    <<-LINE
-#{bottles_on_the_wall(bottle_count)} of beer on the wall, #{bottles_on_the_wall(bottle_count)} of beer.
-LINE
-  end
-
-  def second_line
-    <<-LINE
-Take #{bottle_to_drink} down and pass it around, #{bottles_on_the_wall(bottle_count - 1)} of beer on the wall.
-LINE
   end
 
   def to_s
     "#{first_line}#{second_line}"
   end
 
-  def bottle_to_drink
-    bottle_count == 1 ? "it" : "one"
+  private
+
+  attr_accessor :bottle_count
+
+  def first_line
+    <<-LINE
+#{BottleCount.new(bottle_count).to_s.capitalize} of beer on the wall, #{BottleCount.new(bottle_count).to_s} of beer.
+LINE
   end
 
-  # TODO: paramaterised, rather than using object state
-  # but will be able to fix this when I abstract it to
-  # its own class
-  def bottles_on_the_wall(count)
-    bottle_count_human = count > 0 ? count : "no more"
-
-    "#{bottle_count_human} #{"bottle".pluralize(count)}"
+  def second_line
+    bottle_count > 0 ?
+      Drink.new(bottle_count).to_s :
+      GoToTheStore.new.to_s
   end
 end
+
+# BottleCount,
+# FirstLine, SecondLine
