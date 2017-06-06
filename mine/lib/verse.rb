@@ -16,9 +16,10 @@ class Verse
   attr_accessor :bottle_count
 
   def first_line
-    <<-LINE
-#{BottleCount.new(bottle_count).to_s.capitalize} of beer on the wall, #{BottleCount.new(bottle_count).to_s} of beer.
-LINE
+    bottle_count_human = BottleCount.new(bottle_count).to_s
+
+    "#{bottle_count_human.capitalize} of beer on the wall, " +
+      "#{bottle_count_human} of beer.\n"
   end
 
   def second_line
